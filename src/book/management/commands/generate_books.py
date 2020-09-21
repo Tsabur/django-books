@@ -1,9 +1,9 @@
-from faker import Faker
-import random
-
 from book.models import Book
+
 from django.core.management.base import BaseCommand
 from django.db.utils import IntegrityError
+
+from faker import Faker
 
 
 class Command(BaseCommand):
@@ -14,9 +14,9 @@ class Command(BaseCommand):
             try:
                 name = fake.name()
                 Book.objects.create(
-                    author=fake.name(),
+                    author=name,
                     title=fake.word(),
                     )
             except IntegrityError:
-                print(name)
-        print(Book.objects.count())
+                pass
+#               print(name)

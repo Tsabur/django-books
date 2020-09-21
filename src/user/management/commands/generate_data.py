@@ -1,10 +1,10 @@
-from faker import Faker
 import random
-
 from user.models import User
 
 from django.core.management.base import BaseCommand
 from django.db.utils import IntegrityError
+
+from faker import Faker
 
 
 class Command(BaseCommand):
@@ -21,5 +21,4 @@ class Command(BaseCommand):
                     age=random.randint(1, 100),
                     )
             except IntegrityError:
-                print(email)
-        print(User.objects.count())
+                pass
