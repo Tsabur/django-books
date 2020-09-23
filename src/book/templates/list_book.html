@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <a href="{% url 'index' %}">Home</a>
+    <p> Count: {{ book_list.count }}</p>
+    <p>
+        <a href="{% url 'books-create' %}">Create book</a>
+    </p>
+        {% for book in book_list %}
+        <p>
+            <a href="{% url 'books-update' pk=book.id %}"> ID: {{ book.id }}</a>,
+            Full name: {{ book.info }},
+            <a href="{% url 'books-delete' pk=book.id %}"> Delete book: {{ book.id }}</a>
+        </p>
+        {% endfor %}
+{% endblock content %}

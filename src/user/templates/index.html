@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+Index!
+
+<p>
+    <a href="{% url 'users-name' %}">USERS</a>
+</p>
+
+<p>
+    <a href="{% url 'books-name' %}">BOOKS</a>
+</p>
+
+<p> Hello from P</p>
+
+<ol>
+    <li>a</li>
+    <li>b</li>
+    <li>c</li>
+</ol>
+{% endblock content %}
+

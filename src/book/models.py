@@ -6,3 +6,7 @@ from django.db import models
 class Book(models.Model):
     author = models.CharField(max_length=128)
     title = models.CharField(max_length=128)
+
+
+    def info(self):
+        return f'{self.author} {self.title}'

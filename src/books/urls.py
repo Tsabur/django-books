@@ -19,17 +19,30 @@ from book import views as bv
 
 from django.contrib import admin
 from django.urls import path
+from django.views.generic import TemplateView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('', uv.index),
+    path('', TemplateView.as_view(template_name='index.html'), name='index'),
     path('generate-password/', uv.generate_password),
-    path('users/', uv.users),
-    path('create-user/', uv.create_user),
-    path('update-user/<int:pk>/', uv.update_user),
-    path('books/create/', bv.books_create),
-    path('books/update/<int:pk>/', bv.update_book),
-    path('books/delete/<int:pk>/', bv.delete_book),
-    path('books/list/', bv.book_list),
+    path('users-list/', uv.users, name='users-name'),
+    path('create-user/', uv.create_user, name='users-create'),
+    path('update-user/<int:pk>/', uv.update_user, name='users-update'),
+    # path('/asd/',TemplateView.as_view(template_name='index_book.html'), name='index-book'),
+    path('books/create/', bv.books_create, name='books-create'),
+    path('books/update/<int:pk>/', bv.update_book, name='books-update'),
+    path('books/delete/<int:pk>/', bv.delete_book, name='books-delete'),
+    path('books/list/', bv.book_list, name='books-name'),
 
 ]
+
+from django.conf import settings
+from django.urls import include, path
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns

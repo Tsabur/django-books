@@ -8,3 +8,10 @@ class User(models.Model):
     first_name = models.CharField(max_length=128)
     last_name = models.CharField(max_length=128)
     age = models.PositiveSmallIntegerField(default=0)
+
+    def get_full_name(self):
+        return f'{self.first_name} {self.last_name}'
+
+    @property
+    def full_name(self):
+        return f'{self.first_name} {self.last_name}'
