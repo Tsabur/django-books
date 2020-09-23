@@ -26,7 +26,10 @@ urlpatterns = [
     path('generate-password/', uv.generate_password),
     path('users/', uv.users),
     path('create-user/', uv.create_user),
+    path('update-user/<int:pk>/', uv.update_user),
     path('books/create/', bv.books_create),
+    path('books/update/<int:pk>/', bv.update_book),
+    path('books/delete/<int:pk>/', bv.delete_book),
     path('books/list/', bv.book_list),
 
 ]
