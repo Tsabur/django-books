@@ -17,9 +17,11 @@ from user import views as uv
 
 from book import views as bv
 
+from django.conf import settings
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from django.views.generic import TemplateView
+# from django.urls import path
 
 
 urlpatterns = [
@@ -37,9 +39,6 @@ urlpatterns = [
     path('books/list/', bv.book_list, name='books-name'),
 
 ]
-
-from django.conf import settings
-from django.urls import include, path
 
 if settings.DEBUG:
     import debug_toolbar

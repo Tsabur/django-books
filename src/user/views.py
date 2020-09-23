@@ -2,12 +2,13 @@ from user.forms import UserForm
 from user.models import User
 from user.utils import generate_random_password
 
-from django.urls import reverse
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render, redirect
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render
 
+# from django.urls import reverse
 # from faker import Faker
 # from django.http import Http404
+# from django.http import HttpResponseRedirect
 
 # Create your views here.
 
@@ -19,7 +20,7 @@ def generate_password(request):
 
 
 def users(request):
-    context ={
+    context = {
         'user_list': User.objects.all(),
     }
     return render(request, 'list_users.html', context=context)

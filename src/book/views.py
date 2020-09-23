@@ -1,13 +1,13 @@
 from book.forms import BookForm
 from book.models import Book
 
-from django.urls import reverse
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 
-# from django.http import Http404
+# from django.urls import reverse
 # from faker import Faker
-
+# from django.http import Http404
+# from django.http import HttpResponse
+# from django.http import HttpResponseRedirect
 
 # Create your views here.
 
@@ -18,6 +18,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 #         title=fake.word(),
 #     )
 #     return HttpResponse(f'Author: {book.author} , Title: {book.title}')
+
 
 def book_list(request):
     context = {
@@ -71,4 +72,3 @@ def delete_book(request, pk):
         form = BookForm(instance=book)
         context = {'book_form': form}
         return render(request, 'create_book.html', context=context)
-
