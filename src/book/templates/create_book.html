@@ -1,16 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
+    <a href="{% url 'index' %}">Home</a>
+    {{ book_instance.id }}
+    {{ book_instance.author }}
+    {{ book_instance.title }}
 
-<form method="post">
-    {% csrf_token %}
-    {{ book_form.as_p }}
-    <button type="submit">SEND</button>
-</form>
+    {{ book_instance.info }}
 
-</body>
-</html>
+    <form method="post">
+        {% csrf_token %}
+        {{ book_form.as_p }}
+        <button type="submit">SEND</button>
+    </form>
+
+{% endblock content %}
