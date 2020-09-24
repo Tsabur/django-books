@@ -10,7 +10,7 @@
         <p>
             <a href="{% url 'books-update' pk=book.id %}"> ID: {{ book.id }}</a>,
             Full name: {{ book.info }},
-            <a href="{% url 'books-delete' pk=book.id %}"> Delete book: {{ book.id }}</a>
+            <a href="{% url 'books-delete' pk=book.id %}"><b>Delete book</b></a>
         </p>
         {% endfor %}
 {% endblock content %}
