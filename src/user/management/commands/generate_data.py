@@ -10,19 +10,20 @@ from faker import Faker
 class Command(BaseCommand):
 
     def add_arguments(self, parser):
-        parser.add_argument('poll_ids', nargs='+', type=int)
+        parser.add_argument('poll_ids', nargs='?', type=int, default=21)
 
     def handle(self, *args, **options):
         fake = Faker()
-        for poll_id in options['poll_ids']:
-            for _ in range(poll_id):
-                User.objects.create(
-                    email=fake.email(),
-                    first_name=fake.first_name(),
-                    last_name=fake.last_name(),
-                    age=random.randint(1, 100),
+        # breakpoint()
+        count = options['poll_ids']
+        for _ in range(count):
+            User.objects.create(
+                email=fake.email(),
+                first_name=fake.first_name(),
+                last_name=fake.last_name(),
+                age=random.randint(1, 100),
 
-                )
+            )
 
 
 '''

@@ -28,4 +28,4 @@ class Logger(models.Model):
     method = models.CharField(max_length=256)
     path = models.CharField(max_length=256)
     response_time = models.CharField(max_length=256)
-    created = models.CharField(max_length=256)
+    created = models.DateTimeField(auto_now_add=True)
