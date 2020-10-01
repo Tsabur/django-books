@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <a href="{% url 'index' %}">Home</a>
+    {% for category in category_list %}
+        <p>
+            Category: {{ category.name }}, Books count: {{ category.books.count }}
+        </p>
+        {% endfor %}
+{% endblock content %}

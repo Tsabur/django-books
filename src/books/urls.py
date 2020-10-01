@@ -39,6 +39,8 @@ urlpatterns = [
     path('books/update/<int:pk>/', bv.update_book, name='books-update'),
     path('books/delete/<int:pk>/', bv.delete_book, name='books-delete'),
     path('books/list/', bv.book_list, name='books-name'),
+    path('books/list/category', bv.book_list_category, name='books-name-category'),
+    path('category/list/', bv.category_list, name='category-list'),
 
 ]
 
