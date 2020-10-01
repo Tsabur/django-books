@@ -8,10 +8,29 @@ class User(models.Model):
     first_name = models.CharField(max_length=128)
     last_name = models.CharField(max_length=128)
     age = models.PositiveSmallIntegerField(default=0)
+    phone = models.CharField(max_length=30, default='None')
 
     def get_full_name(self):
         return f'{self.first_name} {self.last_name}'
 
     @property
     def full_name(self):
-        return f'{self.first_name} {self.last_name}'
+        return f'{self.first_name} {self.last_name},  Phone: {self.phone}'
+
+    def save(self, *args, **kwargs):
+        # self.email = self.email.lower()
+        # self.first_name = self.first_name.title()
+        # self.last_name = self.last_name.title()
+        super().save(*args, **kwargs)
+
+
+class Logger(models.Model):
+    method = models.CharField(max_length=256)
+    path = models.CharField(max_length=256)
+    response_time = models.CharField(max_length=256)
+    created = models.DateTimeField(auto_now_add=True)
+
+
+class Contact(models.Model):
+    subject = models.CharField(max_length=128)
+    text = models.TextField(max_length=1024)

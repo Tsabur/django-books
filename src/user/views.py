@@ -1,10 +1,10 @@
-from user.forms import UserForm
+from user.forms import ContactUsForm, UserForm
 from user.models import User
+from user.tasks import smth_slow_async
 from user.utils import generate_random_password
 
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
-
 # from django.urls import reverse
 # from faker import Faker
 # from django.http import Http404
@@ -66,6 +66,30 @@ def update_user(request, pk):
 
 def index(request):
     return render(request, 'index.html')
+
+
+def slow(request):
+    smth_slow_async.delay()
+    return render(request, 'index.html')
+
+
+def contact(request):
+
+    if request.method == 'POST':
+        form = ContactUsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    elif request.method == 'GET':
+        form = ContactUsForm()
+
+    context = {
+        'form': form,
+    }
+    return render(request,
+                  'contact_us.html',
+                  context=context
+                  )
 
 
 '''

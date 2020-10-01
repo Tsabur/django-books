@@ -8,4 +8,4 @@ class Book(models.Model):
     title = models.CharField(max_length=128)
 
     def info(self):
-        return f'{self.author} {self.title}'
+        return f'{self.author}, Title: {self.title}'
