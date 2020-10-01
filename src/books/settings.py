@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+from celery.schedules import crontab
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -131,3 +133,24 @@ STATIC_URL = '/static/'
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+
+CELERY_BROKER_URL = 'amqp://localhost'
+
+CELERY_BEAT_SCHEDULE = {
+    'smth_slow_async': {
+        'task': 'user.tasks.smth_slow_async',
+        'schedule': crontab(minute='*/1'),
+    },
+    'delete_log_async': {
+         'task': 'user.tasks.delete_log_async',
+         'schedule': crontab(minute=0, hour=0),
+    },
+}
+
+EMAIL_HOST_USER = 'testtsabur@gmail.com'
+EMAIL_HOST_PASSWORD = 'qwerty123#'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

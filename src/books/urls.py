@@ -28,6 +28,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', uv.index),
     path('', TemplateView.as_view(template_name='index.html'), name='index'),
+    path('slow/', uv.slow, name='slow'),
+    path('contact/', uv.contact, name='contact'),
     path('generate-password/', uv.generate_password),
     path('users-list/', uv.users, name='users-name'),
     path('create-user/', uv.create_user, name='users-create'),
