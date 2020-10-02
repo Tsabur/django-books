@@ -1,5 +1,5 @@
 from book.forms import BookForm
-from book.models import Book
+from book.models import Book, Category
 
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -20,11 +20,32 @@ from django.shortcuts import get_object_or_404, redirect, render
 #     return HttpResponse(f'Author: {book.author} , Title: {book.title}')
 
 
+def category_list(request):
+    categorys_queryset = Category.objects.all().prefetch_related('books')
+    context = {
+        'category_list': categorys_queryset,
+    }
+    return render(request, 'list_category.html', context=context)
+
+
 def book_list(request):
     context = {
         'book_list': Book.objects.all(),
     }
     return render(request, 'list_book.html', context=context)
+
+
+def book_list_category(request):
+    books_queryset = Book.objects.all()\
+        .only('id', 'title', 'category__name')\
+        .select_related('category')
+    context = {
+        'book_list': books_queryset,
+    }
+    return render(request, 'list_book_category.html', context=context)
+
+
+# .defer('author', вводить поля которые надо исключить) <- используется вместо .only
 
 
 def books_create(request):
